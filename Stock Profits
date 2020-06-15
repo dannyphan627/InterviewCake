@@ -1,0 +1,52 @@
+function getMaxProfit(stockPrices) {
+
+  // Calculate the max profit
+  // let maxProfit = 0;
+  
+  //possible solution 1 but not fully correct O(N^2) RUNTIME
+  // for(let outerTime = 0; outerTime < stockPrices.length; outerTime++){
+  //   for(let innerTime = 0; innerTime < stockPrices.length; innerTime++){
+      
+  //   const earlierTime = Math.min(outerTime, innerTime);
+  //   const laterTime = Math.max(outerTime, innerTime);
+     
+  //   const earlierPrice = stockPrices[earlierTime];
+  //   const laterPrice = stockPrices[laterTime];
+     
+  //   const possibleProfit = laterPrice - earlierPrice;
+     
+  //   maxProfit = Math.max(maxProfit, possibleProfit);
+  //   }
+  // }
+  
+  //possible solution 2 but not fully correct O(N^2) RUNTIME
+  // for(let earlierTime = 0; earlierTime < stockPrices.length; earlierTime++){
+  //   const earlierPrice = stockPrices[earlierTime];
+    
+  //   for(let laterTime = earlierTime + 1; laterTime < stockPrices.length; laterTime++){
+  //     const laterPrice = stockPrices[laterTime];
+      
+  //     const possibleProfit = laterPrice - earlierPrice;
+      
+  //     maxProfit = Math.max(maxProfit, possibleProfit);
+  //   }
+    
+  // }
+  
+  if(stockPrices.length < 2){
+  throw new Error('Getting profit requires at least 2 prices');
+}
+  let minPrice = stockPrices[0];
+  let maxProfit = stockPrices[1] - stockPrices[0];
+  for(let i = 1; i < stockPrices.length; i++){
+    const currentPrice = stockPrices[i];
+    const possibleProfit = currentPrice - minPrice;
+    
+    maxProfit = Math.max(maxProfit, possibleProfit);
+    minPrice = Math.min(minPrice, currentPrice);
+
+  }
+  
+
+  return maxProfit;
+}
