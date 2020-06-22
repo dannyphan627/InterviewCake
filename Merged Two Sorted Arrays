@@ -1,0 +1,27 @@
+function mergeArrays(myArray, alicesArray) {
+
+  // Combine the sorted arrays into one large sorted array
+  const mergedArray = [];
+  let indexOfMergedArray = 0;
+  let currentIndexOfMyArray = 0;
+  let currentIndexOfAliceArray = 0;
+  
+
+ while(indexOfMergedArray < (myArray.length + alicesArray.length)){
+   
+   const myArrayExhausted = currentIndexOfMyArray >= myArray.length;
+   const aliceArrayExhausted = currentIndexOfAliceArray >= alicesArray.length;
+   
+    if(!myArrayExhausted && (aliceArrayExhausted || 
+      (myArray[currentIndexOfMyArray] < alicesArray[currentIndexOfAliceArray]))){
+      mergedArray[indexOfMergedArray] = myArray[currentIndexOfMyArray];
+      currentIndexOfMyArray++;
+   } else {
+      mergedArray[indexOfMergedArray] = alicesArray[currentIndexOfAliceArray];
+      currentIndexOfAliceArray++;
+  }
+    indexOfMergedArray++;
+ }
+
+  return mergedArray;
+}
