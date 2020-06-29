@@ -1,0 +1,23 @@
+function getProductsOfAllIntsExceptAtIndex(intArray) {
+
+  if(intArray.length < 2){
+    throw new Error('require at least 2 numbers')
+  }
+  // Make a list of the products
+  const productsOfAll = [];
+  
+  let productSoFar = 1;
+  for( let i = 0; i < intArray.length; i++){
+    productsOfAll[i] = productSoFar;
+    productSoFar *= intArray[i];
+  }
+  
+  productSoFar = 1;
+  for(let i = intArray.length - 1; i >= 0; i--){
+    productsOfAll[i] *= productSoFar;
+    productSoFar *= intArray[i];
+  }
+  
+  return productsOfAll
+}
+
