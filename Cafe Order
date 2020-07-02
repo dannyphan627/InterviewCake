@@ -1,0 +1,27 @@
+function isFirstComeFirstServed(takeOutOrders, dineInOrders, servedOrders) {
+
+  // Check if we're serving orders first-come, first-served
+  let takeOutIndex = 0;
+  let dineInIndex = 0;
+  
+  let maxTakeOutIndex = takeOutOrders.length - 1;
+  let maxDineInIndex = dineInOrders.length - 1;
+  
+  for(let i = 0; i < servedOrders.length; i++){
+    const currentServedOrder = servedOrders[i];
+    
+    if(currentServedOrder === takeOutOrders[takeOutIndex] && takeOutIndex <= maxTakeOutIndex){
+      takeOutIndex++;
+    } else if (currentServedOrder === dineInOrders[dineInIndex] && dineInIndex <= maxDineInIndex){
+      dineInIndex++;
+    } else {
+      return false
+    }
+  }
+  
+  if(takeOutIndex != takeOutOrders.length || dineInIndex != dineInOrders.length){
+    return false;
+  }
+
+  return true;
+}
